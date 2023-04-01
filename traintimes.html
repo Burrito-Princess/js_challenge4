@@ -11,6 +11,7 @@
     <style>
         .border{
             border: 2px solid black;
+            border-radius: 5px;
             padding: 5px;
         }
 
@@ -30,7 +31,7 @@
         </tr>
         <tr>
             <th class="border" id="0_cat"></th>
-            <th class="border" id="0">No Trains</th>
+            <th class="border" id="0">No information</th>
             <th class="border" id="0_time"></th>
             <!-- <th class="border" id="0_dly"></th> -->
             <th class="border" id="0_plat"></th>
@@ -39,7 +40,7 @@
         </tr>
         <tr>
             <th class="border" id="1_cat"></th>
-            <th class="border" id="1">No Trains</th>
+            <th class="border" id="1">No information</th>
             <th class="border" id="1_time"></th>
             <!-- <th class="border" id="1_dly"></th> -->
             <th class="border plat" id="1_plat"></th>
@@ -48,7 +49,7 @@
         </tr>
         <tr>
             <th class="border" id="2_cat"></th>
-            <th class="border" id="2">No Trains</th>
+            <th class="border" id="2">No information</th>
             <th class="border" id="2_time"></th>
             <!-- <th class="border" id="2_dly"></th> -->
             <th class="border plat" id="2_plat"></th>
@@ -57,7 +58,7 @@
         </tr>
         <tr>
             <th class="border" id="3_cat"></th>
-            <th class="border" id="3">No Trains</th>
+            <th class="border" id="3">No information</th>
             <th class="border" id="3_time"></th>
             <!-- <th class="border" id="3_dly"></th> -->
             <th class="border plat" id="3_plat"></th>
@@ -66,7 +67,7 @@
         </tr>
         <tr>
             <th class="border" id="4_cat"></th>
-            <th class="border" id="4">No Trains</th>
+            <th class="border" id="4">No information</th>
             <th class="border" id="4_time"></th>
             <!-- <th class="border" id="4_dly"></th> -->
             <th class="border plat" id="4_plat"></th>
@@ -75,7 +76,7 @@
         </tr>
         <tr>
             <th class="border" id="5_cat"></th>
-            <th class="border" id="5">No Trains</th>
+            <th class="border" id="5">No information</th>
             <th class="border" id="5_time"></th>
             <!-- <th class="border" id="5_dly"></th> -->
             <th class="border plat" id="5_plat"></th>
@@ -84,7 +85,7 @@
         </tr>
         <tr>
             <th class="border" id="6_cat"></th>
-            <th class="border" id="6">No Trains</th>
+            <th class="border" id="6">No information</th>
             <th class="border" id="6_time"></th>
             <!-- <th class="border" id="6_dly"></th> -->
             <th class="border plat" id="6_plat"></th>
@@ -93,7 +94,7 @@
         </tr>
         <tr>
             <th class="border" id="7_cat"></th>
-            <th class="border" id="7">No Trains</th>
+            <th class="border" id="7">No information</th>
             <th class="border" id="7_time"></th>
             <!-- <th class="border" id="7_dly"></th> -->
             <th class="border plat" id="7_plat"></th>
@@ -102,7 +103,7 @@
         </tr>
         <tr>
             <th class="border" id="8_cat"></th>
-            <th class="border" id="8">No Trains</th>
+            <th class="border" id="8">No information</th>
             <th class="border" id="8_time"></th>
             <!-- <th class="border" id="8_dly"></th> -->
             <th class="border plat" id="8_plat"></th>
@@ -111,7 +112,7 @@
         </tr>
         <tr>
             <th class="border" id="9_cat"></th>
-            <th class="border" id="9">No Trains</th>
+            <th class="border" id="9">No information</th>
             <th class="border" id="9_time"></th>
             <!-- <th class="border" id="9_dly"></th> -->
             <th class="border plat" id="9_plat"></th>
@@ -119,6 +120,9 @@
             <th class="border" id="9_mesg"></th>
         </tr>
     </table>
+    <br><br><br>
+
+
 
     <script>
         var abb;
@@ -140,7 +144,7 @@
         // }
 
         ns();
-        // setInterval(ns, 10000);
+        setInterval(ns, 10000);
         async function ns(){
         // Departure info API
         var obj;
@@ -271,7 +275,7 @@
             
 
 
-            //display
+            //display table
             
             document.getElementById(i).innerHTML = str_dep;
             document.getElementById(i + "_time").innerHTML = str_time;
@@ -280,7 +284,6 @@
             document.getElementById(i + "_cat").innerHTML = str_cat;
             document.getElementById(i + "_mesg").innerHTML = str_mesg;
             
-
             
 
         }
@@ -303,7 +306,9 @@
         }       
         })
         var name = await station.json();
+        console.log(name);
         abb = name.payload[0].code;
+        station_name = name.payload[0].mediumName;
         document.getElementById("where").innerHTML = abb;
         for(let s = 0; s < 10; s++){
             document.getElementById(s).innerHTML = "";
